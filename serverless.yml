@@ -5,6 +5,9 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 plugins:
   - serverless-offline
 
+#custom:
+#  s3Bucket: dog-ceo-stanford-files # ${self:custom.s3Bucket}
+
 provider:
   name: aws
   runtime: nodejs8.10
