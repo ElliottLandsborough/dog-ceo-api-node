@@ -36,7 +36,6 @@ module.exports.breedinfo = (event, context, callback) => {
       statusCode = 404;
       responseObject = {status: 'error', code: '404', message: 'Breed not found'};
     } else{
-      console.log(data.Body.toString('utf-8'));
       var array = yaml.safeLoad(data.Body.toString('utf-8'));
       statusCode = 200;
       responseObject = {status: 'success', message: array};
