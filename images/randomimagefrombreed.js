@@ -14,6 +14,10 @@ module.exports.randomimagefrombreed = (event, context, callback) => {
   var split = cleanPath.split('/');
   var breed = split[1];
 
+  if (split[3] == 'images') {
+    breed += '-' + split[2];
+  }
+
   var params = {
     Bucket: 'dog-ceo-stanford-files',
     Delimiter: "",
