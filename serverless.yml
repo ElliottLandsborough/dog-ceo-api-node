@@ -14,17 +14,24 @@ provider:
   region: eu-west-1
 
 functions:
-  listallbreeds:
+  listAllBreeds:
     handler: images/listallbreeds.listallbreeds
     events:
       - http:
           path: breeds/list/all
           method: get
           cors: true
-  listbreeds:
+  listBreeds:
     handler: images/listbreeds.listbreeds
     events:
       - http:
           path: breeds/list
+          method: get
+          cors: true
+  listSubBreeds:
+    handler: images/listsubbreeds.listsubbreeds
+    events:
+      - http:
+          path: breed/{breed}/list
           method: get
           cors: true
