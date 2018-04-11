@@ -42,3 +42,18 @@ functions:
           path: breeds/image/random
           method: get
           cors: true
+  allBreedImages:
+    handler: images/allbreedimages.allbreedimages
+    events:
+      - http:
+          path: breed/{breed}/images
+          method: get
+          cors: true
+
+#  randomImageFromBreed:
+#    handler: images/randomimagefrombreed.randomimagefrombreed
+#    events:
+#      - http:
+#          path: breeds/image/random
+#          method: get
+#          cors: true
