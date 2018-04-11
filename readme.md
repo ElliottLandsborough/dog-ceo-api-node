@@ -10,6 +10,10 @@
 * npm install
 * serverless offline start
 
+## deployment
+
+* serverless deploy
+
 ## todo
 
 * refactor! (loads of repeated code)
