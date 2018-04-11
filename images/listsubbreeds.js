@@ -32,7 +32,7 @@ module.exports.listsubbreeds = (event, context, callback) => {
     var s3BreedList = result.CommonPrefixes;
     var breedListObj = {};
 
-    for (i = 0; i < s3BreedList.length; i++) { 
+    for (i = 0; i < s3BreedList.length; i++) {
       breed = s3BreedList[i].Prefix;
       cleanBreed = breed.replace(/[^a-z\-]/g,'');
       split = cleanBreed.split('-');
