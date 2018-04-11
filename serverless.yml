@@ -4,18 +4,6 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 
 plugins:
   - serverless-offline
-#  - serverless-s3-sync
-#  - serverless-s3-local
-#  - serverless-s3-local-sync
-
-#custom:
-#  s3:
-#    host: 0.0.0.0
-#    port: 8337
-#    directory: /tmp/s3bucket
-##  s3Sync: # serverless-s3-sync cobfig
-##    - bucketName: dog-ceo-stanford-files
-##      localDir: ~/projects/dog-ceo-api/img
 
 resources:
   Resources:
