@@ -23,7 +23,7 @@ module.exports.breedinfo = (event, context, callback) => {
   breed += '.yaml';
 
   var params = {
-    Bucket: 'dog-ceo-api-static-content',
+    Bucket: 'dog-ceo-api-static-content-dev',
     Key: breed
   };
 
