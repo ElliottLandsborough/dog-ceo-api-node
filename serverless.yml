@@ -13,10 +13,11 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: eu-west-1
+  stage: ${opt:stage, 'dev'}
 
 custom:
   s3Sync:
-    - bucketName: dog-ceo-api-static-content
+    - bucketName: dog-ceo-api-static-content-${self:provider.stage}
       localDir: static-content
 
 resources:
@@ -24,7 +25,7 @@ resources:
     Json:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: dog-ceo-api-static-content
+        BucketName: dog-ceo-api-static-content-${self:provider.stage}
 
 functions:
   listAllBreeds:
