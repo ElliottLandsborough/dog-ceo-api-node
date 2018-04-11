@@ -28,58 +28,72 @@ resources:
 
 functions:
   listAllBreeds:
-    handler: images/listallbreeds.listallbreeds
+    handler: src/listallbreeds.listallbreeds
     events:
       - http:
           path: breeds/list/all
           method: get
           cors: true
   listBreeds:
-    handler: images/listbreeds.listbreeds
+    handler: src/listbreeds.listbreeds
     events:
       - http:
           path: breeds/list
           method: get
           cors: true
   listSubBreeds:
-    handler: images/listsubbreeds.listsubbreeds
+    handler: src/listsubbreeds.listsubbreeds
     events:
       - http:
           path: breed/{breed}/list
           method: get
           cors: true
   randomImageAnyBreed:
-    handler: images/randomimageanybreed.randomimageanybreed
+    handler: src/randomimageanybreed.randomimageanybreed
     events:
       - http:
           path: breeds/image/random
           method: get
           cors: true
   allBreedImages:
-    handler: images/allbreedimages.allbreedimages
+    handler: src/allbreedimages.allbreedimages
     events:
       - http:
           path: breed/{breed}/images
           method: get
           cors: true
   allSubBreedImages:
-    handler: images/allbreedimages.allbreedimages
+    handler: src/allbreedimages.allbreedimages
     events:
       - http:
           path: breed/{breed}/{breed2}/images
           method: get
           cors: true
   randomImageFromBreed:
-    handler: images/randomimagefrombreed.randomimagefrombreed
+    handler: src/randomimagefrombreed.randomimagefrombreed
     events:
       - http:
           path: breed/{breed}/images/random
           method: get
           cors: true
   randomImageFromSubBreed:
-    handler: images/randomimagefrombreed.randomimagefrombreed
+    handler: src/randomimagefrombreed.randomimagefrombreed
     events:
       - http:
           path: breed/{breed}/{breed2}/images/random
+          method: get
+          cors: true
+  breedInfo:
+    handler: src/breedinfo.breedinfo
+    events:
+      - http:
+          path: breed/{breed}
+          method: get
+          cors: true
+  subBreedInfo:
+    handler: src/breedinfo.breedinfo
+    events:
+      - http:
+          path: breed/{breed}/{breed2}
           method: get
           cors: true
