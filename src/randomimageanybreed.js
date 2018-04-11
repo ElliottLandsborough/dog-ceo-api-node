@@ -44,7 +44,7 @@ module.exports.randomimageanybreed = (event, context, callback) => {
 
       var s3BreedObjects = result.Contents;
       var s3Object = s3BreedObjects[Math.floor(Math.random()*s3BreedObjects.length)];
-      var s3File = 'https://dog.ceo/api/img/' + s3Object.Key;
+      var s3File = 'https://s3-eu-west-1.amazonaws.com/dog-ceo-stanford-files/' + s3Object.Key;
 
       var responseObject = {status: 'success', message: s3File};
 
