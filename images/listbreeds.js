@@ -2,7 +2,7 @@
 
 const AWS = require('aws-sdk');
 
-module.exports.listallbreeds = (event, context, callback) => {
+module.exports.listbreeds = (event, context, callback) => {
   'use strict';
 
   const s3 = new AWS.S3({
@@ -30,7 +30,7 @@ module.exports.listallbreeds = (event, context, callback) => {
 
     var i, breed, cleanBreed, split, name, sub;
     var s3BreedList = result.CommonPrefixes;
-    var breedListObj = {};
+    var breedListArray = [];
     
     for (i = 0; i < s3BreedList.length; i++) { 
       breed = s3BreedList[i].Prefix;
@@ -38,18 +38,15 @@ module.exports.listallbreeds = (event, context, callback) => {
       split = cleanBreed.split('-');
       name = split[0];
       sub = split.length > 1 ? split[1] : false;
-      if (typeof breedListObj[name] == 'undefined') {
-        breedListObj[name] = [];
-      }
-      if (sub) {
-        breedListObj[name].push(sub);
+      if (!breedListArray.includes(name)) {
+        breedListArray.push(name);
       }
     }
 
     // create a response
     const response = {
       statusCode: 200,
-      body: JSON.stringify({status: 'success', message: breedListObj})
+      body: JSON.stringify({status: 'success', message: breedListArray})
     };
 
     callback(null, response);

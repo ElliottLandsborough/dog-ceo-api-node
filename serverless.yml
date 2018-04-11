@@ -21,3 +21,10 @@ functions:
           path: breeds/list/all
           method: get
           cors: true
+  listbreeds:
+    handler: images/listbreeds.listbreeds
+    events:
+      - http:
+          path: breeds/list
+          method: get
+          cors: true
