@@ -2,7 +2,10 @@
   "name": "dog-ceo-api-node",
   "version": "1.0.0",
   "description": "The image api for https://dog.ceo",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ElliottLandsborough/dog-ceo-api-node.git"
+  }
   "author": "Elliott Landsborough",
   "license": "MIT",
   "dependencies": {

@@ -98,10 +98,10 @@ functions:
           path: breed/{breed}/{breed2}
           method: get
           cors: true
-  getImage:
-    handler: src/getimage.getimage
-    events:
-      - http:
-          path: image/{folder}/{file}
-          method: get
-          cors: true
+#  getImage:
+#    handler: src/getimage.getimage
+#    events:
+#      - http:
+#          path: image/{folder}/{file}
+#          method: get
+#          cors: true
