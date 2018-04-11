@@ -28,17 +28,17 @@ module.exports.listallbreeds = (event, context, callback) => {
       return;
     }
 
-    var i, breed, split, name, sub;
+    var i, breed, cleanBreed, split, name, sub;
     var s3BreedList = result.CommonPrefixes;
     var breedListObj = {};
     
     for (i = 0; i < s3BreedList.length; i++) { 
       breed = s3BreedList[i].Prefix;
-      breed = breed.replace(/[^a-z\-]/g,'');
-      split = breed.split('-');
+      cleanBreed = breed.replace(/[^a-z\-]/g,'');
+      split = cleanBreed.split('-');
       name = split[0];
       sub = split.length > 1 ? split[1] : false;
-      if (typeof breedListObj.name == 'undefined') {
+      if (typeof breedListObj[name] == 'undefined') {
         breedListObj[name] = [];
       }
       if (sub) {
