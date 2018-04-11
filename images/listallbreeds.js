@@ -10,10 +10,13 @@ module.exports.listallbreeds = (event, context, callback) => {
   });
 
   var params = {
-    Bucket: 'dog-ceo-stanford-files'
+    Bucket: 'dog-ceo-stanford-files',
+    Delimiter: "/",
+    Prefix: "",
+    MaxKeys: 100000
   };
 
-  s3.listObjects(params, function (error, result) {
+  s3.listObjectsV2(params, function (error, result) {
     // handle potential errors
     if (error) {
       console.error(error);
@@ -25,10 +28,28 @@ module.exports.listallbreeds = (event, context, callback) => {
       return;
     }
 
+    var i, breed, split, name, sub;
+    var s3BreedList = result.CommonPrefixes;
+    var breedListObj = {};
+    
+    for (i = 0; i < s3BreedList.length; i++) { 
+      breed = s3BreedList[i].Prefix;
+      breed = breed.replace(/[^a-z\-]/g,'');
+      split = breed.split('-');
+      name = split[0];
+      sub = split.length > 1 ? split[1] : false;
+      if (typeof breedListObj.name == 'undefined') {
+        breedListObj[name] = [];
+      }
+      if (sub) {
+        breedListObj[name].push(sub);
+      }
+    }
+
     // create a response
     const response = {
       statusCode: 200,
-      body: JSON.stringify(result)
+      body: JSON.stringify({status: 'success', message: breedListObj})
     };
 
     callback(null, response);
