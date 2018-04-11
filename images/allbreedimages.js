@@ -38,7 +38,7 @@ module.exports.allbreedimages = (event, context, callback) => {
     var filesList = [];
 
     for (i = 0; i < s3ObjectList.length; i++) {
-      filesList.push(s3ObjectList[i].Key);
+      filesList.push('https://dog.ceo/api/img/' + s3ObjectList[i].Key);
     }
 
     var responseObject = {status: 'success', message: filesList};
