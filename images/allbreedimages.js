@@ -14,14 +14,20 @@ module.exports.allbreedimages = (event, context, callback) => {
   var split = cleanPath.split('/');
   var breed = split[1];
 
+  if (split[3] == 'images') {
+    breed = breed + '-' + split[2];
+  }
+
   var params = {
     Bucket: 'dog-ceo-stanford-files',
-    Delimiter: "",
+    Delimiter: '',
     Prefix: breed,
     MaxKeys: 10000
   };
 
   s3.listObjectsV2(params, function (error, result) {
+    console.log(result);
+
     // handle potential errors
     if (error) {
       console.error(error);
@@ -33,15 +39,25 @@ module.exports.allbreedimages = (event, context, callback) => {
       return;
     }
 
-    var i;
-    var s3ObjectList = result.Contents;
-    var filesList = [];
+    var statusCode;
+    var responseObject;
 
-    for (i = 0; i < s3ObjectList.length; i++) {
-      filesList.push('https://dog.ceo/api/img/' + s3ObjectList[i].Key);
+    if (!result.Contents.length) {
+      statusCode = 404;
+      responseObject = {status: 'error', code: '404', message: 'Breed not found'};
+    } else {
+      statusCode = 200;
+
+      var i;
+      var s3ObjectList = result.Contents;
+      var filesList = [];
+
+      for (i = 0; i < s3ObjectList.length; i++) {
+        filesList.push('https://dog.ceo/api/img/' + s3ObjectList[i].Key);
+      }
+
+      responseObject = {status: 'success', message: filesList};
     }
-
-    var responseObject = {status: 'success', message: filesList};
 
     // create a response
     const response = {
