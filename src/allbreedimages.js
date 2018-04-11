@@ -53,7 +53,7 @@ module.exports.allbreedimages = (event, context, callback) => {
       var filesList = [];
 
       for (i = 0; i < s3ObjectList.length; i++) {
-        filesList.push('https://dog.ceo/api/img/' + s3ObjectList[i].Key);
+        filesList.push('https://s3-eu-west-1.amazonaws.com/dog-ceo-stanford-files/' + s3ObjectList[i].Key);
       }
 
       responseObject = {status: 'success', message: filesList};
