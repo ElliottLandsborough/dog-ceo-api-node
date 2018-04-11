@@ -4,6 +4,7 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 
 plugins:
   - serverless-offline
+  - serverless-s3-sync
 
 #custom:
 #  s3Bucket: dog-ceo-stanford-files # ${self:custom.s3Bucket}
@@ -12,6 +13,18 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: eu-west-1
+
+custom:
+  s3Sync:
+    - bucketName: dog-ceo-api-static-content
+      localDir: static-content
+
+resources:
+  Resources:
+    Json:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: dog-ceo-api-static-content
 
 functions:
   listAllBreeds:
