@@ -35,3 +35,10 @@ functions:
           path: breed/{breed}/list
           method: get
           cors: true
+  randomImageAnyBreed:
+    handler: images/randomimageanybreed.randomimageanybreed
+    events:
+      - http:
+          path: breeds/image/random
+          method: get
+          cors: true
