@@ -61,7 +61,7 @@ module.exports.allbreedimages = (event, context, callback) => {
 
     // create a response
     const response = {
-      statusCode: 200,
+      statusCode: statusCode,
       body: JSON.stringify(responseObject)
     };
 
