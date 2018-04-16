@@ -57,16 +57,18 @@ module.exports.allbreedimages = (event, context, callback) => {
       }
 
       responseObject = {status: 'success', message: filesList};
+
+      // create a response
+      var response = {
+        statusCode: statusCode,
+        headers: {'cache-control': 'private, no-cache'},
+        body: JSON.stringify(responseObject)
+      };
+
+      callback(null, response);
     }
 
-    // create a response
-    const response = {
-      statusCode: statusCode,
-      headers: {'cache-control': 'public, max-age=43200'},
-      body: JSON.stringify(responseObject)
-    };
-
-    callback(null, response);
+    
 
   });
 

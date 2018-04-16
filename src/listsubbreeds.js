@@ -63,7 +63,7 @@ module.exports.listsubbreeds = (event, context, callback) => {
     }
 
     // create a response
-    const response = {
+    var response = {
       statusCode: statusCode,
       headers: {'cache-control': 'public, max-age=43200'},
       body: JSON.stringify(responseObject)
