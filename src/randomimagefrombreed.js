@@ -48,7 +48,7 @@ module.exports.randomimagefrombreed = (event, context, callback) => {
       var i;
       var s3ObjectList = result.Contents;
       var s3Object = s3ObjectList[Math.floor(Math.random()*s3ObjectList.length)];
-      var s3File = 'https://s3-eu-west-1.amazonaws.com/dog-ceo-stanford-files/' + s3Object.Key;
+      var s3File = 'https://images.dog.ceo/breeds/' + s3Object.Key;
 
       responseObject = {status: 'success', message: s3File};
     }
