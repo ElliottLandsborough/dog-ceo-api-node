@@ -54,8 +54,9 @@ module.exports.randomimagefrombreed = (event, context, callback) => {
     }
 
     // create a response
-    const response = {
+    var response = {
       statusCode: statusCode,
+      headers: {'cache-control': 'private, no-cache'},
       body: JSON.stringify(responseObject)
     };
 

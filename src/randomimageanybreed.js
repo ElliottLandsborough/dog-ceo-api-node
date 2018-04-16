@@ -49,8 +49,9 @@ module.exports.randomimageanybreed = (event, context, callback) => {
       var responseObject = {status: 'success', message: s3File};
 
       // create a response
-      const response = {
+      var response = {
         statusCode: 200,
+        headers: {'cache-control': 'private, no-cache'},
         body: JSON.stringify(responseObject)
       };
 
