@@ -46,6 +46,7 @@ module.exports.listbreeds = (event, context, callback) => {
     // create a response
     const response = {
       statusCode: 200,
+      headers: {'cache-control': 'public, max-age=43200'},
       body: JSON.stringify({status: 'success', message: breedListArray})
     };
 
