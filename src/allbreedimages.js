@@ -42,9 +42,20 @@ module.exports.allbreedimages = (event, context, callback) => {
     var statusCode;
     var responseObject;
 
-    if (!result.Contents.length) {
+    console.log(result.Contents.length == 0);
+
+    if (result.Contents.length == 0) {
       statusCode = 404;
       responseObject = {status: 'error', code: '404', message: 'Breed not found'};
+
+      // create a response
+      var response = {
+        statusCode: statusCode,
+        headers: {'cache-control': 'private, no-cache'},
+        body: JSON.stringify(responseObject)
+      };
+
+      callback(null, response);
     } else {
       statusCode = 200;
 
