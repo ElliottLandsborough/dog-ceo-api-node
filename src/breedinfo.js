@@ -33,7 +33,7 @@ module.exports.breedinfo = (event, context, callback) => {
 
   s3.getObject(params, function(err, data) {
     if (err) {
-      console.log(err, err.stack); // an error occurred
+      //console.log(err, err.stack); // an error occurred
       statusCode = 404;
       responseObject = {status: 'error', code: '404', message: 'Breed not found'};
     } else {

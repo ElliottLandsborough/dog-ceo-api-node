@@ -24,7 +24,7 @@ module.exports.getimage = (event, context, callback) => {
 
   s3.getObject(params, function(err, data) {
     if (err) {
-      console.log(err, err.stack); // an error occurred
+      //console.log(err, err.stack); // an error occurred
       statusCode = 404;
       body = 'Image not found';
     } else {

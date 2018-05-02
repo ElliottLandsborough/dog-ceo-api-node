@@ -26,7 +26,7 @@ module.exports.allbreedimages = (event, context, callback) => {
   };
 
   s3.listObjectsV2(params, function (error, result) {
-    console.log(result);
+    //console.log(result);
 
     // handle potential errors
     if (error) {
@@ -42,7 +42,7 @@ module.exports.allbreedimages = (event, context, callback) => {
     var statusCode;
     var responseObject;
 
-    console.log(result.Contents.length == 0);
+    //console.log(result.Contents.length == 0);
 
     if (result.Contents.length == 0) {
       statusCode = 404;
