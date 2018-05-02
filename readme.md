@@ -21,6 +21,36 @@
 * unit tests
 * record stats somewhere
 
+## Useful bash script
+
+```
+#!/bin/bash
+
+# get the current git status
+UPSTREAM=${1:-'@{u}'}
+LOCAL=$(cd ~/dog-api-images; /usr/bin/git rev-parse @)
+REMOTE=$(cd ~/dog-api-images; /usr/bin/git rev-parse "$UPSTREAM")
+BASE=$(cd ~/dog-api-images; /usr/bin/git merge-base @ "$UPSTREAM")
+
+if [ $LOCAL = $REMOTE ]; then
+        echo "Up-to-date"
+elif [ $LOCAL = $BASE ]; then
+        echo "Need to pull"
+        # pull the repo
+        (cd ~/dog-api-images; /usr/bin/git fetch origin;);
+        (cd ~/dog-api-images; /usr/bin/git reset --hard origin/master;);
+        # sync the files to s3
+        ~/s3cmd-2.0.1/s3cmd sync --skip-existing --delete-removed --exclude '.git*' --exclude 'LICENSE' --exclude '*.md' --include '*.jp*g' ~/dog-api-images/ s3://name-of-bucket
+        # clear the cache on the remote server
+        /usr/bin/curl -i -H "Accept: application/json" -H "Content-Type: application/json" "https://localhost:8000/clear-cache?key=something-really-secure-lol
+        echo "Complete"
+elif [ $REMOTE = $BASE ]; then
+        echo "Need to push"
+else
+        echo "Diverged"
+fi
+```
+
 ## MIT License
 
 Copyright (c) 2018 Dog CEO
