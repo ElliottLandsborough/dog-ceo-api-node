@@ -7,7 +7,7 @@
 
 ## how?
 
-* npm install -g serveress
+* npm install -g serverless
 * npm install
 * serverless offline start
 
