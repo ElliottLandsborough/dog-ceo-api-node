@@ -9,11 +9,11 @@
   "author": "Elliott Landsborough",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.341.0",
-    "js-yaml": "^3.12.0",
-    "serverless-s3-sync": "^1.7.0"
+    "aws-sdk": "^2.464.0",
+    "js-yaml": "^3.13.1",
+    "serverless-s3-sync": "^1.8.0"
   },
   "devDependencies": {
-    "serverless-offline": "^3.28.1"
+    "serverless-offline": "^3.33.0"
   }
 }

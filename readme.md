@@ -21,6 +21,36 @@
 * unit tests
 * record stats somewhere
 
+## More reliable version of useful bash script
+
+```
+#!/bin/bash
+
+# pull the repo
+(cd /repodir; /usr/bin/git fetch origin;);
+(cd /repodir; /usr/bin/git reset --hard origin/master;);
+
+# generate a list of the current directory (ignore git folder)
+ls -alhR -I .git -I LICENSE /repodir > lastDIR.tmp;
+
+# check the old md5 against the current directory (no match also happens if lastMD5 doesnt exist)
+if /usr/bin/md5sum --status -c lastMD5.tmp; then
+    # The MD5 sum matched
+    echo 'No directory changes detected.';
+else
+    # The MD5 sum didn't match
+    echo 'Changes were detected...';
+
+    echo 'Syncing to s3....';
+    s3cmd sync --skip-existing --delete-removed --exclude '.git*' --exclude 'LICENSE' --exclude '*.md' --include '*.txt' /repodir s3://bucket-name;
+
+    echo 'Regenerating checksums...';
+    md5sum lastDIR.tmp > lastMD5.tmp;
+
+    echo 'Done.';
+fi
+```
+
 ## Useful bash script
 
 ```
