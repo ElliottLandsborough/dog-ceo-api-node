@@ -9,13 +9,14 @@ module.exports.randomimageanybreed = (event, context, callback) => {
     region : 'eu-west-1'
   });
 
-  var path = event.path;
-  var cleanPath = path.replace(/^\/|\/$/g, '');
-  var split = cleanPath.split('/');
-  var amount = parseInt(split[3], 10);
+  var amount = 1;
+
+  if (event.pathParameters) {
+    amount = event.pathParameters.count;
+  }
 
   // make sure we have an int of 1 or more
-  if (!amount) {
+  if (typeof amount === 'undefined' || amount < 1) {
     amount = 1;
   }
 

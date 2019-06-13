@@ -46,10 +46,7 @@ module.exports.listsubbreeds = (event, context, callback) => {
       }
     }
 
-    var path = event.path;
-    var cleanPath = path.replace(/^\/|\/$/g, '');
-    var split = cleanPath.split('/');
-    var breed = split[1];
+    var breed = event.pathParameters.breed;
 
     var statusCode;
     var responseObject;

@@ -11,16 +11,19 @@ module.exports.breedinfo = (event, context, callback) => {
     region : 'eu-west-1'
   });
 
-  var path = event.path;
-  var cleanPath = path.replace(/^\/|\/$/g, '');
-  var split = cleanPath.split('/');
-  var breed = 'breed-info/' + split[1];
+  var breed = '';
+  var breed2 = '';
 
-  if (typeof split[2] !== 'undefined') {
-    breed += '-' + split[2];
+  if (event.pathParameters) {
+    breed = event.pathParameters.breed;
+    breed2 = event.pathParameters.breed2;
   }
 
-  breed += '.yaml';
+  if (typeof breed2 !== 'undefined') {
+    breed = breed + '-' + breed2;
+  }
+
+  breed = 'breed-info/' + breed + '.yaml';
 
   var params = {
     // todo: make this say dev/live/$stage
