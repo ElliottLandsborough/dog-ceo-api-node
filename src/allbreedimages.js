@@ -9,13 +9,16 @@ module.exports.allbreedimages = (event, context, callback) => {
     region : 'eu-west-1'
   });
 
-  var path = event.path;
-  var cleanPath = path.replace(/^\/|\/$/g, '');
-  var split = cleanPath.split('/');
-  var breed = split[1];
+  var breed = '';
+  var breed2 = '';
 
-  if (split[3] == 'images') {
-    breed = breed + '-' + split[2];
+  if (event.pathParameters) {
+    breed = event.pathParameters.breed;
+    breed2 = event.pathParameters.breed2;
+  }
+
+  if (typeof breed2 !== 'undefined') {
+    breed = breed + '-' + breed2;
   }
 
   var params = {
