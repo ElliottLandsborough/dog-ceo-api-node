@@ -9,7 +9,7 @@
   "author": "Elliott Landsborough",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.464.0",
+    "aws-sdk": "^2.474.0",
     "js-yaml": "^3.13.1",
     "serverless-s3-sync": "^1.8.0"
   },
